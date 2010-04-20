@@ -19,7 +19,7 @@
 
 /*
 Plugin Name: Widgets on Pages
-Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets_on_pages
+Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content
 Author: Todd Halfpenny
 Version: 0.0.1
