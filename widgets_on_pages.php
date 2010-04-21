@@ -22,7 +22,7 @@ Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content
 Author: Todd Halfpenny
-Version: 0.0.1
+Version: 0.0.2
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
@@ -33,6 +33,7 @@ Author URI: http://gingerbreaddesign.co.uk/todd
 
 
 function widgets_on_page(){
+  reg_wop_sidebar();
   $str =  "<div id='widgets_on_page'>
     <ul>";
   ob_start();
@@ -46,6 +47,19 @@ function widgets_on_page(){
 return $str;
 }
 
+
+function reg_wop_sidebar() {
+  if ( function_exists('register_sidebar') )
+    register_sidebar(array(
+      'name' => 'Widgets on Pages',
+      'before_widget' => '<li id="%1$s" class="widget %2$s">',
+      'after_widget' => '</li>',
+      'before_title' => '<h2 class="widgettitle">',
+      'after_title' => '</h2>',
+  ));
+}
+
+add_action('admin_init', 'reg_wop_sidebar'); 
 add_shortcode('widgets_on_pages', 'widgets_on_page');
 
 
