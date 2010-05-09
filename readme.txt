@@ -1,16 +1,18 @@
 === Widgets on Pages ===
 Contributors: toddhalfpenny
 Donate link: n/a
-Tags: widgets, sidebar, pages, post
+Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 0.0.2
+Stable tag: 0.0.3
 
-Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content
+Allows 'in-page' widget areas so widgets can be defined via shortcode straight into page/post content
 
 == Description ==
 
-Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content
+Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content.
+There is one default widget area that can be used or you can add more from the settings menu. You can currently have up to 5 widget areas (sidebars).
+Each sidebar can be called indepentenly by  a shortcode and you can call more than one per post/page.
 
 
 == Installation ==
@@ -19,20 +21,24 @@ Allows 'in-page' widget areas so widgets can be defined via shortcut straight in
 1. Install the plugin from within the Dashboard or upload the directory `widgets-on-pages` and all its contents to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Add the widgets you want to the `Widgets on Pages` widget area in the admin screens
-1. Add the shortcut `[widgets_on_pages]` to the page or post in the place where you'd like your widgets to appear.
+1. Add the shortcut `[widgets_on_pages id=x]` to the page or post in the place where you'd like your widgets to appear (where 'x' = the id of the sidebar to use. If using only the default sidebar then no 'id' argument is needed (i.e. `[widgets_on_pages]`).
 
 
 == Frequently Asked Questions ==
 
 = Can I have more than one defined sidebar area =
 
-No, sorry not yet. The plan is to get this supported though
+Yes... there can be up to 5 sidebars defined. The number available can be administered via the settings menu.
 
 == Screenshots ==
 
 1. The 'auto' defined Sidebar that can be called by the shortcode.
 
 == Changelog ==
+
+= 0.0.3 = 
+
+The number of sidebars can now be defined via the settings menu. There can be up to 5 defined. Each sidebar can be called independently.
 
 = 0.0.2 = 
 
