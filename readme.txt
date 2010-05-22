@@ -4,14 +4,14 @@ Donate link: n/a
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 0.0.3
+Stable tag: 0.0.4
 
 Allows 'in-page' widget areas so widgets can be defined via shortcode straight into page/post content
 
 == Description ==
 
 Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content.
-There is one default widget area that can be used or you can add more from the settings menu. You can currently have up to 5 widget areas (sidebars).
+There is one default widget area that can be used or you can add more from the settings menu. You can currently have an unlimited number of sidebars.
 Each sidebar can be called indepentenly by  a shortcode and you can call more than one per post/page.
 
 
@@ -28,13 +28,17 @@ Each sidebar can be called indepentenly by  a shortcode and you can call more th
 
 = Can I have more than one defined sidebar area =
 
-Yes... there can be up to 5 sidebars defined. The number available can be administered via the settings menu.
+Yes... you can have an unlimited number of sidebars defined. The number available can be administered via the settings menu.
 
 == Screenshots ==
 
 1. The 'auto' defined Sidebar that can be called by the shortcode.
 
 == Changelog ==
+
+= 0.0.4 = 
+
+There is now no longer a limit on the number of sidebars that can be defined. Each sidebar can be called independently.
 
 = 0.0.3 = 
 

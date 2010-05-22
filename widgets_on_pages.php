@@ -22,7 +22,7 @@ Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content
 Author: Todd Halfpenny
-Version: 0.0.3
+Version: 0.0.4
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
@@ -58,22 +58,28 @@ function wop_plugin_options() {
     <?php settings_fields( 'wop_options' ); ?>
     <? $cur_num_sidebars = get_option('num_of_wop_sidebars');?>
     
+    <script language="JavaScript">
+    function validate(evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+      if ((key == 8) || (key == 9) || (key == 13)) {
+      }
+      else {
+        key = String.fromCharCode( key );
+        var regex = /[0-9]|\./;
+        if( !regex.test(key) ) {
+          theEvent.returnValue = false;
+          theEvent.preventDefault();
+        }
+      }
+    }
+    </script>
+
     <table class="form-table">
     
       <tr valign="top">
       <th scope="row">Number of additional sidebars</th>
-      <td><input type="hidden" size='3' value="<? echo get_option('num_of_wop_sidebars');?>" />
-        <select name="num_of_wop_sidebars">
-          <?php
-            for ( $num_sidebars = 0; $num_sidebars <= 5; $num_sidebars++){
-              if ($num_sidebars == $cur_num_sidebars) :
-                echo "<option name='num_of_wop_sidebars' selected value='$num_sidebars'>$num_sidebars&nbsp;</option>";
-              else :
-                echo "<option name='num_of_wop_sidebars' value='$num_sidebars'>$num_sidebars&nbsp;</option>";
-              endif;
-          }
-          ?>
-        </select>
+      <td><input type='text'  name="num_of_wop_sidebars" size='3' value="<? echo get_option('num_of_wop_sidebars');?>"  onkeypress='validate(event)' />
     </table>
     <input type="hidden" name="action" value="update" />
     <input type="hidden" name="page_options" value="num_of_wop_sidebars" />
