@@ -1,6 +1,6 @@
 === Widgets on Pages ===
 Contributors: toddhalfpenny
-Donate link: n/a
+Donate link: http://gingerbreaddesign.co.uk/wordpress/plugins/plugins.php
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
 Tested up to: 2.9.2
