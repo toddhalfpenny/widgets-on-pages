@@ -4,7 +4,7 @@ Donate link: http://gingerbreaddesign.co.uk/wordpress/plugins/plugins.php
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 0.0.4
+Stable tag: 0.0.5
 
 Allows 'in-page' widget areas so widgets can be defined via shortcode straight into page/post content
 
@@ -13,6 +13,7 @@ Allows 'in-page' widget areas so widgets can be defined via shortcode straight i
 Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content.
 There is one default widget area that can be used or you can add more from the settings menu. You can currently have an unlimited number of sidebars.
 Each sidebar can be called indepentenly by  a shortcode and you can call more than one per post/page.
+Sidebars can be included in the post/page by using a shortcode like `[widgets_on_pages id=x]` where `x` is the number of the sidebar.
 
 
 == Installation ==
@@ -35,6 +36,10 @@ Yes... you can have an unlimited number of sidebars defined. The number availabl
 1. The 'auto' defined Sidebar that can be called by the shortcode.
 
 == Changelog ==
+
+= 0.0.5 = 
+
+Fix for activation errors. Looks like it might've been the use of php short open tags or line ending chars.
 
 = 0.0.4 = 
 

@@ -22,7 +22,7 @@ Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content
 Author: Todd Halfpenny
-Version: 0.0.4
+Version: 0.0.5
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
@@ -56,7 +56,7 @@ function wop_plugin_options() {
   <form method="post" action="options.php">
     <?php wp_nonce_field('update-options'); ?>
     <?php settings_fields( 'wop_options' ); ?>
-    <? $cur_num_sidebars = get_option('num_of_wop_sidebars');?>
+    <?php $cur_num_sidebars = get_option('num_of_wop_sidebars');?>
     
     <script language="JavaScript">
     function validate(evt) {
@@ -79,7 +79,7 @@ function wop_plugin_options() {
     
       <tr valign="top">
       <th scope="row">Number of additional sidebars</th>
-      <td><input type='text'  name="num_of_wop_sidebars" size='3' value="<? echo get_option('num_of_wop_sidebars');?>"  onkeypress='validate(event)' />
+      <td><input type='text'  name="num_of_wop_sidebars" size='3' value="<?php echo get_option('num_of_wop_sidebars');?>"  onkeypress='validate(event)' />
     </table>
     <input type="hidden" name="action" value="update" />
     <input type="hidden" name="page_options" value="num_of_wop_sidebars" />
@@ -88,7 +88,7 @@ function wop_plugin_options() {
     </p>
   </form>
   </div>
-<?
+<?php
 }
 
 
