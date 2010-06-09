@@ -3,8 +3,8 @@ Contributors: toddhalfpenny
 Donate link: http://gingerbreaddesign.co.uk/wordpress/plugins/plugins.php
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
-Tested up to: 2.9.2
-Stable tag: 0.0.5
+Tested up to: 3.0.0
+Stable tag: 0.0.6
 
 Allows 'in-page' widget areas so widgets can be defined via shortcode straight into page/post content
 
@@ -14,6 +14,9 @@ Allows 'in-page' widget areas so widgets can be defined via shortcut straight in
 There is one default widget area that can be used or you can add more from the settings menu. You can currently have an unlimited number of sidebars.
 Each sidebar can be called indepentenly by  a shortcode and you can call more than one per post/page.
 Sidebars can be included in the post/page by using a shortcode like `[widgets_on_pages id=x]` where `x` is the number of the sidebar.
+Sidebars can also be named via the Widgets on Pages options page and that name can be used instead of the `x` id.
+''NOTE'' : see changelog for use if using the named sidebars
+
 
 
 == Installation ==
@@ -22,7 +25,7 @@ Sidebars can be included in the post/page by using a shortcode like `[widgets_on
 1. Install the plugin from within the Dashboard or upload the directory `widgets-on-pages` and all its contents to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Add the widgets you want to the `Widgets on Pages` widget area in the admin screens
-1. Add the shortcut `[widgets_on_pages id=x]` to the page or post in the place where you'd like your widgets to appear (where 'x' = the id of the sidebar to use. If using only the default sidebar then no 'id' argument is needed (i.e. `[widgets_on_pages]`).
+1. Add the shortcut `[widgets_on_pages id=x]` to the page or post in the place where you'd like your widgets to appear (where 'x' = the id of the sidebar to use (or the name if you have named it such as `[widgets_on_pages id=TagCloud]`). If using only the default sidebar then no 'id' argument is needed (i.e. `[widgets_on_pages]`).
 
 
 == Frequently Asked Questions ==
@@ -33,9 +36,16 @@ Yes... you can have an unlimited number of sidebars defined. The number availabl
 
 == Screenshots ==
 
-1. The 'auto' defined Sidebar that can be called by the shortcode.
+1. Setting up the sidebars.
+
+2. The 'options' page.
+
 
 == Changelog ==
+
+= 0.0.6 = 
+
+Sidebars can now be named via the options page. These names can be used in place of the numerical id used in older versions. Note that if you change the name you will need to manually update any shortcodes where this is being used.
 
 = 0.0.5 = 
 
