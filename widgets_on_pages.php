@@ -20,9 +20,9 @@
 /*
 Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
-Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content
+Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content or through the use of a template tag. 
 Author: Todd Halfpenny
-Version: 0.0.6
+Version: 0.0.7
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
@@ -35,12 +35,12 @@ add_action('admin_menu', 'wop_menu');
 
 function wop_menu() {
   add_options_page('Widgets on Pages options', 'Widgets on Pages', 7, 'wop_options', 'wop_plugin_options');
-  add_action( 'admin_init', 'register_mysettings' );
+  add_action( 'admin_init', 'register_wop_settings' );
 
 }
 
 
-function register_mysettings() { // whitelist options
+function register_wop_settings() { // whitelist options
   register_setting( 'wop_options', 'wop_options_field' );
 }
 
@@ -131,10 +131,37 @@ function wop_install() {
 }
 
 
+/* ===============================
+  C O N T E X T U A L    H E L P
+================================*/
+function my_contextual_help($text) {
+  $screen = $_GET['page'];
+	if ($screen == 'wop_options') {
+	$text = "<h5>Need help with the Widgets on Pages plugin?</h5>";
+	$text .= "<p>Check out the documentation and support forums for help with this plugin.</p>";
+	$text .= "<a href=\"http://wordpress.org/extend/plugins/widgets-on-pages/installation/\">Documentation</a><br /><a href=\"http://wordpress.org/tags/widgets-on-pages?forum_id=10\">Support forums</a>";
+	}
+	return $text;
+}
+	 
+add_action('contextual_help', 'my_contextual_help', 10, 1);
+
 
 /* ===============================
   C O R E    C O D E 
 ================================*/
+
+// Main Function Code, to be included on themes
+function widgets_on_template($id="") {
+	if (!empty($id)) {
+		$sidebar_name =  $id;
+	}
+	else {
+		$sidebar_name = '1';
+	}
+  $arr = array(id => $sidebar_name );
+  echo widgets_on_page($arr);
+}
 
 
 function widgets_on_page($atts){
@@ -145,7 +172,7 @@ function widgets_on_page($atts){
   else :
     $sidebar_name = $id;
   endif;
-  $str =  "<div id='widgets_on_page'>
+  $str =  "<div id='" . str_replace(" ", "_", $sidebar_name) . "' class='widgets_on_page'>
     <ul>";
   ob_start();
   if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar($sidebar_name) ) :
@@ -154,7 +181,7 @@ function widgets_on_page($atts){
   ob_end_clean();
   $str .= $myStr;
   $str .=  "</ul>
-  </div><!-- widget_on_page -->";
+  </div><!-- widgets_on_page -->";
   return $str;
 }
 
@@ -218,6 +245,5 @@ register_activation_hook(__FILE__,'wop_install');
 
 add_action('admin_init', 'reg_wop_sidebar'); 
 add_shortcode('widgets_on_pages', 'widgets_on_page');
-
 
 ?>
