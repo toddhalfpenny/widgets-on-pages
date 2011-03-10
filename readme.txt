@@ -3,8 +3,8 @@ Contributors: toddhalfpenny
 Donate link: http://gingerbreaddesign.co.uk/wordpress/plugins/plugins.php
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
-Tested up to: 3.0.1
-Stable tag: 0.0.7
+Tested up to: 3.1
+Stable tag: 0.0.8
 
 Allows 'in-page' widget areas so widgets can be defined via shortcode straight into page/post content. The widgets/sidebars can also be added through the use of template tags.
 
@@ -49,6 +49,13 @@ Yes... you can have an unlimited number of sidebars defined. The number availabl
 
 
 == Changelog ==
+
+= 0.0.8 =
+
+1. Resolve potential conflicts with other plugins (contextual help callback).
+1. Fixed bug so that Widgets settings are not lost when switching themes. Credit to wesleong over at WordPress.org forums for getting this fix on the right track!
+1. Add settings link on main dashboard plugins page
+
 
 = 0.0.7 =
 
