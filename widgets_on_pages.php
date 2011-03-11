@@ -22,7 +22,7 @@ Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content or through the use of a template tag. 
 Author: Todd Halfpenny
-Version: 0.0.8
+Version: 0.0.9
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
@@ -38,7 +38,6 @@ function wop_menu() {
   add_action( 'admin_init', 'register_wop_settings' );
 
 }
-
 
 add_filter('plugin_action_links', 'wop_plugin_action_links', 10, 2);
 
@@ -56,6 +55,7 @@ function wop_plugin_action_links($links, $file) {
 
     return $links;
 }
+
 
 
 function register_wop_settings() { // whitelist options
@@ -152,7 +152,7 @@ function wop_install() {
 /* ===============================
   C O N T E X T U A L    H E L P
 ================================*/
-function wop_contextual_help($text) {
+function my_contextual_help($text) {
   $screen = $_GET['page'];
 	if ($screen == 'wop_options') {
 	$text = "<h5>Need help with the Widgets on Pages plugin?</h5>";
@@ -162,7 +162,7 @@ function wop_contextual_help($text) {
 	return $text;
 }
 	 
-add_action('contextual_help', 'wop_contextual_help', 10, 1);
+add_action('contextual_help', 'my_contextual_help', 10, 1);
 
 
 /* ===============================
@@ -212,16 +212,19 @@ function reg_wop_sidebar() {
   if ( function_exists('register_sidebar') )
     if ($options['wop_name_1'] != "") :
       $name = $options['wop_name_1'];
+      $sidebar_id = ' id="' .$name . '"';  
     else :
       $name = 'Widgets on Pages 1';
+      $sidebar_id = ""; 
     endif;
-    $sidebar_id = 'wop-1'; 
+    $id = 'wop-1';
+    //$sidebar_id = 'wop-1'; 
     $desc = '#1 Widgets on Pages sidebar.
             Use shortcode
             "[widgets_on_pages' . $sidebar_id .']"';
 register_sidebar(array(
   'name' => __( $name, 'wop' ),
-  'id' => $sidebar_id ,
+  'id' => $id ,
   'description' => __( $desc, 'wop' ),
   'before_widget' => '<li id="%1$s" class="widget %2$s">',
   'after_widget' => '</li>',
@@ -236,16 +239,19 @@ register_sidebar(array(
           $option_id = 'wop_name_' . $sidebar;
           if ($options[$option_id] != "") :
             $name = $options[$option_id];
+            $sidebar_id = ' id="' . $name . '"'; 
           else :
             $name = 'Widgets on Pages ' . $sidebar;
+            $sidebar_id = ' id=' . $sidebar; 
           endif;
-          $sidebar_id = 'wop-' . $sidebar; 
+          //$sidebar_id = 'wop-' . $sidebar; 
+          $id = 'wop-' . $sidebar; 
           $desc = '#' . $sidebar . 'Widgets on Pages sidebar.
               Use shortcode
               "[widgets_on_pages' . $sidebar_id .']"';
   register_sidebar(array(
               'name' => __( $name, 'wop' ),
-              'id' => $sidebar_id ,
+              'id' => $id ,
               'description' => __( $desc, 'wop' ),
               'before_widget' => '<li id="%1$s" class="widget %2$s">',
               'after_widget' => '</li>',
@@ -255,6 +261,7 @@ register_sidebar(array(
     }
   endif;
 }
+
 
 register_activation_hook(__FILE__,'wop_install');
 
