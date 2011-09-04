@@ -36,7 +36,7 @@ Sidebars can also be named via the Widgets on Pages options page and that name c
 
 == Frequently Asked Questions ==
 
-= How can I remove the bullet points which appear next to each widget?
+= How can I remove the bullet points which appear next to each widget? =
 
 Simply select the 'Enable Styling' setting in the Widgets on Pages options page.
 
