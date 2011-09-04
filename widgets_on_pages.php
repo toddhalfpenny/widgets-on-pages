@@ -22,7 +22,7 @@ Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content or through the use of a template tag. 
 Author: Todd Halfpenny
-Version: 0.0.9
+Version: 0.0.10
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
@@ -76,6 +76,7 @@ function wop_plugin_options() {
     wp_nonce_field('update-options'); 
     settings_fields( 'wop_options' ); 
     $options = get_option('wop_options_field');
+    $enable_css = $options["enable_css"];
     $num_add_sidebars = $options["num_of_wop_sidebars"];
     ?>
     
@@ -99,6 +100,15 @@ function wop_plugin_options() {
     <table class="form-table">
     
       <tr valign="top">
+        <th scope="row">Enable styling (remove bullets etc)</th>
+        <td>
+				<? echo '<input name="wop_options_field[enable_css]" type="checkbox" value="1" class="code" ' . checked( 1, $enable_css, false ) . ' />';
+				?>
+				</td>
+      </tr>
+    
+	
+		<tr valign="top">
         <th scope="row">Number of additional sidebars</th>
         <td><input type='text'  name="wop_options_field[num_of_wop_sidebars]" size='3' value="<?php echo $num_add_sidebars;?>"  onkeypress='validate(event)' /></td>
       </tr>
@@ -138,14 +148,7 @@ function wop_plugin_options() {
 ================================*/
 
 function wop_install() {
-  if (get_option('num_of_wop_sidebars')) {
-    // older version sub run upgrade
-    $num_of_sidebars = get_option('num_of_wop_sidebars');
-    $wop_options = array(num_of_wop_sidebars => $num_of_sidebars);
-    update_option('wop_options_field', $wop_options);
-    delete_option('num_of_wop_sidebars');
-    update_option('wop_version', "0.0.6");
-  }
+	// nothing to do this time out
 }
 
 
@@ -267,5 +270,21 @@ register_activation_hook(__FILE__,'wop_install');
 
 add_action('admin_init', 'reg_wop_sidebar'); 
 add_shortcode('widgets_on_pages', 'widgets_on_page');
+
+
+/* ===============================
+  A D D    C S S    ? 
+================================*/
+function add_wop_css_to_head()
+{
+	echo "<link rel='stylesheet' id='wop-css'  href='".get_settings('siteurl')."/wp-content/plugins/widgets-on-pages/wop.css' type='text/css' media='all' />";
+}
+
+$options = get_option('wop_options_field');
+$enable_css = $options["enable_css"];
+if ($enable_css) {
+  add_action('wp_head', 'add_wop_css_to_head');
+}
+
 
 ?>
