@@ -22,7 +22,7 @@ Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: Allows 'in-page' widget areas so widgets can be defined via shortcut straight into page/post content or through the use of a template tag. 
 Author: Todd Halfpenny
-Version: 0.0.10
+Version: 0.0.11
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
@@ -102,7 +102,7 @@ function wop_plugin_options() {
       <tr valign="top">
         <th scope="row">Enable styling (remove bullets etc)</th>
         <td>
-				<? echo '<input name="wop_options_field[enable_css]" type="checkbox" value="1" class="code" ' . checked( 1, $enable_css, false ) . ' />';
+				<?php echo '<input name="wop_options_field[enable_css]" type="checkbox" value="1" class="code" ' . checked( 1, $enable_css, false ) . ' />';
 				?>
 				</td>
       </tr>
@@ -119,15 +119,15 @@ function wop_plugin_options() {
       </p>
     </td></tr>
     <tr><td><h3>Optional Sidebar Names</h3></td><td></td></tr>
-    <?
+    <?php
     for ($sidebar = 1; $sidebar <= ($num_add_sidebars + 1); $sidebar++) {
         $option_id = 'wop_name_' . $sidebar;
         ?>
         <tr valign="top">
-          <th scope="row">WoP sidebar <? echo $sidebar;?> name:</th>
-          <td><input type='text'  name="wop_options_field[<? echo $option_id;?>]" size='35' value="<?php echo $options[$option_id];?>"  /></td>
+          <th scope="row">WoP sidebar <?php echo $sidebar;?> name:</th>
+          <td><input type='text'  name="wop_options_field[<?php echo $option_id;?>]" size='35' value="<?php echo $options[$option_id];?>"  /></td>
         </tr>
-        <?
+        <?php
     }
     ?>
     <tr><td></td><td>

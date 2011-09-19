@@ -4,7 +4,7 @@ Donate link: http://gingerbreaddesign.co.uk/wordpress/plugins/plugins.php
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 0.0.10
+Stable tag: 0.0.11
 
 Allows 'in-page' widget areas so widgets can be defined via shortcode straight into page/post content. The widgets/sidebars can also be added through the use of template tags.
 
@@ -53,6 +53,11 @@ Yes... you can have an unlimited number of sidebars defined. The number availabl
 
 
 == Changelog ==
+
+= 0.0.11 = 
+
+1. Replaced all short PHP tags with long ones to ensure the plugin worked as expected even on sites where PHP short tags were disabled. Props to drdanchaz over at the WordPress.org forums for the tip-off.
+1. Added more specific selectors to the wop.css to target ul>li as well as ul.
 
 = 0.0.10 = 
 
