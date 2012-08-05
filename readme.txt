@@ -3,7 +3,7 @@ Contributors: toddhalfpenny
 Donate link: http://gingerbreaddesign.co.uk/wordpress/plugins/plugins.php
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
-Tested up to: 3.3
+Tested up to: 3.4.1
 Stable tag: 0.0.11
 
 Allows 'in-page' widget areas so widgets can be defined via shortcode straight into page/post content. The widgets/sidebars can also be added through the use of template tags.
@@ -30,7 +30,7 @@ Sidebars can also be named via the Widgets on Pages options page and that name c
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Add the widgets you want to the `Widgets on Pages` widget area in the admin screens
 1. Add the shortcut `[widgets_on_pages id=x]` to the page or post in the place where you'd like your widgets to appear (where 'x' = the id of the sidebar to use (or the name if you have named it such as `[widgets_on_pages id=TagCloud]`). If using only the default sidebar then no 'id' argument is needed (i.e. `[widgets_on_pages]`).
-1. To add a sidebar into a theme you can add the following type of code to the relevant PHP theme file. `&lt;?php widgets_on_template("wop_1"); ?>`
+1. To add a sidebar into a theme you can add the following type of code to the relevant PHP theme file. `<?php widgets_on_template("wop_1"); ?>`
 1. If you see bullet points/images next to the widget titles when using this plugin use the 'Enable Styling' setting in the options page
 
 
