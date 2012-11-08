@@ -6,7 +6,7 @@ Requires at least: 2.8
 Tested up to: 3.4.2
 Stable tag: 0.0.12
 
-The easy way to Add Widgets or Sidebars to Posts and Pages by shortcodes or template tags.
+The easy way to Add Widgets or Sidebars to Posts and Pages using shortcodes or template tags.
 
 == Description ==
 
