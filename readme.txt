@@ -4,7 +4,7 @@ Donate link: http://gingerbreaddesign.co.uk/wordpress/plugins/plugins.php
 Tags: widgets, sidebar, pages, post, shortcode, inline
 Requires at least: 2.8
 Tested up to: 3.4.2
-Stable tag: 0.0.12
+Stable tag: 0.0.13
 
 The easy way to Add Widgets or Sidebars to Posts and Pages using shortcodes or template tags.
 
@@ -57,6 +57,13 @@ Yes... you can have an unlimited number of sidebars defined. The number availabl
 
 
 == Changelog ==
+
+= 0.0.13 = 
+
+1. Added TinyMCE editor plugin WYSIWYG button
+1. Added optional '''cols''' attribute to make horizontal/grid layout easier.
+1. Replaced deprecated calls to remove debug output
+
 
 = 0.0.12 = 
 

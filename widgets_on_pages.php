@@ -22,13 +22,13 @@ Plugin Name: Widgets on Pages
 Plugin URI: http://gingerbreaddesign.co.uk/wordpress/plugins/widgets-on-pages.php
 Description: The easy way to Add Widgets or Sidebars to Posts and Pages by shortcodes or template tags.
 Author: Todd Halfpenny
-Version: 0.0.12
+Version: 0.0.13
 Author URI: http://gingerbreaddesign.co.uk/todd
 */
 
-/* ===============================
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   A D M I N   M E N U / P A G E
-================================*/
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 
 add_action('admin_menu', 'wop_menu');
@@ -147,18 +147,18 @@ function wop_plugin_options() {
 
 
 
-/* ===============================
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
   I N S T A L L / U P G R A D E 
-================================*/
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 function wop_install() {
 	// nothing to do this time out
 }
 
 
-/* ===============================
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
   C O N T E X T U A L    H E L P
-================================*/
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 function wop_plugin_help($text, $screen_id, $screen) {
 	global $wop_plugin_hook;
 	if ($screen_id == $wop_plugin_hook) {
@@ -173,33 +173,37 @@ function wop_plugin_help($text, $screen_id, $screen) {
 add_filter('contextual_help', 'wop_plugin_help', 10, 3);
 
 
-/* ===============================
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
   C O R E    C O D E 
-================================*/
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 // Main Function Code, to be included on themes
-function widgets_on_template($id="") {
+function widgets_on_template($id="", $cols="") {
 	if (!empty($id)) {
 		$sidebar_name =  $id;
 	}
 	else {
 		$sidebar_name = '1';
 	}
-  $arr = array(id => $sidebar_name );
+  $arr = array(
+       id => $sidebar_name, 
+       cols => $cols );
   echo widgets_on_page($arr);
 }
 
 
 function widgets_on_page($atts){
   reg_wop_sidebar();
-  extract(shortcode_atts( array('id' => '1'), $atts));
+  extract(shortcode_atts(array(
+	'id' => '1', 
+	'cols' => ''), $atts));
   if (is_numeric($id)) :
     $sidebar_name = 'Widgets on Pages ' . $id;
   else :
     $sidebar_name = $id;
   endif;
   $str =  "<div id='" . str_replace(" ", "_", $sidebar_name) . "' class='widgets_on_page'>
-    <ul>";
+    <ul class='wop_" . $cols . "'>";
   ob_start();
   if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar($sidebar_name) ) :
   endif;
@@ -277,12 +281,12 @@ add_action('admin_init', 'reg_wop_sidebar');
 add_shortcode('widgets_on_pages', 'widgets_on_page');
 
 
-/* ===============================
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
   A D D    C S S    ? 
-================================*/
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 function add_wop_css_to_head()
 {
-	echo "<link rel='stylesheet' id='wop-css'  href='".get_settings('siteurl')."/wp-content/plugins/widgets-on-pages/wop.css' type='text/css' media='all' />";
+	echo "<link rel='stylesheet' id='wop-css'  href='".get_option('siteurl')."/wp-content/plugins/widgets-on-pages/wop.css' type='text/css' media='all' />";
 }
 
 $options = get_option('wop_options_field');
@@ -291,5 +295,57 @@ if ($enable_css) {
   add_action('wp_head', 'add_wop_css_to_head');
 }
 
+
+
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+  T I N Y   M C E 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+function wop_addbuttons() {
+	 if( is_admin() ){	
+	         if( get_user_option('rich_editing') ){
+		     	add_filter('mce_external_plugins', 'add_wop_tinymce_plugin');
+    			add_filter('mce_buttons', 'register_wop_tinymce_button');
+    		}
+	}
+}
+
+function register_wop_tinymce_button($buttons) {
+   array_push($buttons, "separator", "wopplugin");
+   return $buttons;
+}
+ 
+// Load the TinyMCE plugin
+function add_wop_tinymce_plugin($plugin_array) {
+   $plugin_url = plugins_url( '/widgets-on-pages/js/wop_editor_plugin.js' );
+   $plugin_array['wopplugin'] = $plugin_url;
+   return $plugin_array;
+} 
+ 
+// init process for button control
+add_action('init', 'wop_addbuttons');
+
+function wop_editor_dialog(){
+	require_once( 'include/wop_editor_dialog.php' );
+	die;
+}
+
+if( is_admin() ){
+    add_action( 'wp_ajax_wop_editor_dialog', 'wop_editor_dialog' );
+}
+
+add_action( 'admin_head', 'wop_admin_css' );
+
+function wop_admin_css(){ ?>
+     <style>
+     .wp_themeSkin span.mce_wopplugin {
+     background: url('<?php echo plugins_url( "/widgets-on-pages/images/wop_tiny_mce.png"); ?>') no-repeat 0 -20px;
+     }	
+
+     span.mce_wopplugin:hover {
+     background-position: 0 0;
+     }
+     </style>
+<?php
+}
 
 ?>

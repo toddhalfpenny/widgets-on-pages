@@ -1,2 +1,20 @@
-.widgets_on_page ul, .widgets_on_page ul li {list-style:none;background:none;}
+.widgets_on_page>ul, .widgets_on_page ul li {list-style:none;background:none;}
 
+.widgets_on_page>ul {width: 100%; overflow:auto; padding-left: 0; padding-right:0; margin-left:0; margin-right:0;}
+
+.widgets_on_page>ul.wop_1 li.widget { float:left;clear: both}
+
+.widgets_on_page>ul.wop_2 li.widget {width: 50%; float:left; clear: none;}
+.widgets_on_page>ul.wop_2>li:nth-of-type(3) { clear :both;}
+
+.widgets_on_page>ul.wop_3 li.widget {width: 33.3%; float:left; clear: none;}
+.widgets_on_page>ul.wop_3>li:nth-of-type(4) { clear :both;}
+
+.widgets_on_page>ul.wop_4 li.widget {width: 25%; float:left; clear: none;}
+.widgets_on_page>ul.wop_4>li:nth-of-type(5) { clear :both;}
+
+.widgets_on_page>ul.wop_5 li.widget {width: 20%; float:left; clear: none;}
+.widgets_on_page>ul.wop_5>li:nth-of-type(6) { clear :both;}
+
+.widgets_on_page>ul.wop_6 li.widget {width: 17.15%; float:left; clear: none;}
+.widgets_on_page>ul.wop_6>li:nth-of-type(7) { clear :both;}
