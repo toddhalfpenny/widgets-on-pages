@@ -26,6 +26,8 @@
     tinymce.PluginManager.add('wopplugin', tinymce.plugins.WopPlugin);
 })();
 
+
+
 function insertShortCode(){
     var wop_select_box = jQuery( '#wop_sidebar' );	
     var class_select_box = jQuery( '#wop_align' );	
@@ -33,3 +35,4 @@ function insertShortCode(){
     tinyMCE.activeEditor.execCommand( "mceInsertContent", false, '[widgets_on_pages id="' + wop_select_box.val() + '" cols="' + columns_select_box.val() + '"]' );
     	tb_remove();
 }
+
